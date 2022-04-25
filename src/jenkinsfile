@@ -1,0 +1,20 @@
+node{
+
+    stage('Checkout SCM'){
+     
+       git branch:'master', url:'https://github.com/Ashraf786alam/Angular.git'
+    }
+
+    stage('Install node modules'){
+        sh "npm install"
+    }
+
+    stage('Build'){
+        sh "npm run build:ssr"
+    }
+
+    stage('Deploy'){
+
+        sh "pm2 restart all"
+    }
+}
